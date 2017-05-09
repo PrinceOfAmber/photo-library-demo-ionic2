@@ -6,7 +6,13 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
+
+<button (click)="saveMyVideo()">Save video to library</button>
+<input [(ngModel)]="url">
+
+
   <ion-list>
     <button ion-item *ngFor="let libraryItem of library" (click)="itemTapped($event, libraryItem)">
       <img [src]="libraryItem.thumbnailURL | cdvphotolibrary">

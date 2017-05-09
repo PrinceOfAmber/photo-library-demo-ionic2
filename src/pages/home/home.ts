@@ -12,6 +12,7 @@ import { PhotoLibrary, LibraryItem } from '@ionic-native/photo-library';
 const THUMBNAIL_WIDTH = 512;
 const THUMBNAIL_HEIGHT = 384;
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -20,7 +21,7 @@ export class HomePage {
 
   thumbnailWidth = THUMBNAIL_WIDTH + 'px';
   thumbnailHeight = THUMBNAIL_HEIGHT + 'px';
-
+  public url: string = "https://res.cloudinary.com/mazu/video/upload/v1494350492/stage/mazufamily/twseyk688cqqu6uq7yhw.mp4";
   library: LibraryItem[];
 
   constructor(public navCtrl: NavController,
@@ -30,6 +31,17 @@ export class HomePage {
     this.library = [];
     this.fetchPhotos();
 
+  }
+
+  saveMyVideo() {
+    this.platform.ready().then(() => {
+
+      this.photoLibrary.saveVideo(this.url,"someAlbum").then((result)=>{
+console.log("result eh ",result);
+      }).catch(err=>{
+        console.log("error",err);
+      });
+    });
   }
 
   fetchPhotos() {
